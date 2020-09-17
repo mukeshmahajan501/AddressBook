@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class AddressBook {
     Scanner input = new Scanner(System.in);
 
+    //Add person in address book.
     Person addPerson() {
         Person person = new Person();
         System.out.print("Enter First name: ");
@@ -33,25 +34,26 @@ public class AddressBook {
         return person;
     }
 
-    LinkedList<Person> editPerson(LinkedList<Person> addressBook) {
+    //Edit person detais in address book.
+    LinkedList<Person> editPerson(LinkedList<Person> addressBook){
         System.out.print("Enter First Name to edit : ");
         String firstName = input.next();
         System.out.print("Enter Last Name: ");
         String lastName = input.next();
 
+        boolean flag=false;
 
-        boolean flag = false;
-        for (Person person : addressBook) {
-            System.out.print(person.getFirstName() + " " + person.getLastName());
-            if (firstName.equals(person.getFirstName()) && lastName.equals(person.getLastName())) {
+        for(Person person : addressBook){
+            System.out.print(person.getFirstName()+" "+person.getLastName());
+            if(firstName.equals(person.getFirstName()) && lastName.equals(person.getLastName())){
                 System.out.println("\n1. Address" +
                         "\n2. City" +
                         "\n3. State" +
                         "\n4. Zip" +
-                        "\n5. Phone Number" +
+                        "\n5. Phone Number"+
                         "\n Enter your choice: ");
                 int choice = input.nextInt();
-                switch (choice) {
+                switch (choice){
                     case 1:
                         System.out.print("Enter Updated Address: ");
                         String address = input.next();
@@ -85,12 +87,33 @@ public class AddressBook {
                     default:
                         System.out.println("Invalid choice.");
                 }
-                flag = true;
+                flag=true;
                 System.out.println("Editing done.");
             }
-            if (flag == false) {
+            if (flag==false){
                 System.out.println("Details not found.");
             }
+        }
+        return addressBook;
+    }
+
+    //Delete person in address book.
+    LinkedList<Person> deletePerson(LinkedList<Person> addressBook){
+        System.out.print("Enter First Name to delete record: ");
+        String firstName = input.next();
+        System.out.print("Enter Last Name: ");
+        String lastName = input.next();
+        boolean flag=false;
+        for(Person person : addressBook){
+            if(firstName.equals(person.getFirstName()) && lastName.equals(person.getLastName())){
+                addressBook.remove(person);
+                System.out.println("Deletion Done.");
+                flag=true;
+                break;
+            }
+        }
+        if (flag==false){
+            System.out.println("Details not found.");
         }
         return addressBook;
     }
