@@ -8,7 +8,7 @@ import java.util.TreeMap;
 public class AddressBook {
     Scanner input = new Scanner(System.in);
 
-    //Add multiple person in address book.
+    // Add multiple person in address book.
     public Person addPerson(LinkedList<Person> addressBook) {
         Person person = new Person();
         System.out.print("Enter First name: ");
@@ -41,7 +41,7 @@ public class AddressBook {
         return person;
     }
 
-    //Check for duplicate entry
+    // Check for duplicate entry
     boolean duplicateEntry(String firstName, String lastName, LinkedList<Person> addressBook) {
         boolean result = false;
         for (Person person : addressBook) {
@@ -52,91 +52,88 @@ public class AddressBook {
         return result;
     }
 
-    //Edit person details in address book.
+    // Edit person details in address book.
     LinkedList<Person> editPerson(LinkedList<Person> addressBook) {
         System.out.print("Enter First Name to edit : ");
         String firstName = input.next();
         System.out.print("Enter Last Name: ");
         String lastName = input.next();
 
-        int temp = 0;
-        for (Person p : addressBook) {
-            System.out.print(p.getFirstName() + " " + p.getLastName());
-            if (firstName.equals(p.getFirstName()) && lastName.equals(p.getLastName())) {
-                System.out.println("\n1. Address" +
-                        "\n2. City" +
-                        "\n3. State" +
-                        "\n4. Zip" +
-                        "\n5. Phone Number" +
-                        "\n Enter your choice: ");
+        boolean flag = false;
+        for (Person person : addressBook) {
+            System.out.print(person.getFirstName() + " " + person.getLastName());
+            if (firstName.equals(person.getFirstName()) && lastName.equals(person.getLastName())) {
+                System.out.println("\n1. Address" + "\n2. City" + "\n3. State" + "\n4. Zip" + "\n5. Phone Number"
+                        + "\n Enter your choice: ");
                 int choice = input.nextInt();
                 switch (choice) {
                     case 1:
                         System.out.print("Enter Updated Address: ");
                         String address = input.next();
-                        p.setAddress(address);
+                        person.setAddress(address);
                         break;
 
                     case 2:
                         System.out.print("Enter Updated City: ");
                         String city = input.next();
-                        p.setCity(city);
+                        person.setCity(city);
                         break;
 
                     case 3:
                         System.out.print("Enter Updated State: ");
                         String state = input.next();
-                        p.setState(state);
+                        person.setState(state);
                         break;
 
                     case 4:
                         System.out.print("Enter Updated Zip: ");
                         int zip = input.nextInt();
-                        p.setZip(zip);
+                        person.setZip(zip);
                         break;
 
                     case 5:
                         System.out.print("Enter Updated Phone Number: ");
                         String phoneNum = input.next();
-                        p.setPhoneNum(phoneNum);
+                        person.setPhoneNum(phoneNum);
                         break;
 
                     default:
                         System.out.println("Invalid choice.");
                 }
-                temp = 1;
+                flag = true;
                 System.out.println("Editing done.");
             }
-            if (temp == 0) {
+            if (flag == false) {
                 System.out.println("Details not found.");
             }
         }
         return addressBook;
     }
 
-    //Delete person in address book.
+    // Delete person in address book.
     LinkedList<Person> deletePerson(LinkedList<Person> addressBook) {
         System.out.print("Enter First Name to delete record: ");
         String firstName = input.next();
         System.out.print("Enter Last Name: ");
         String lastName = input.next();
-        int temp = 0;
+        boolean flag = false;
         for (Person person : addressBook) {
             if (firstName.equals(person.getFirstName()) && lastName.equals(person.getLastName())) {
                 addressBook.remove(person);
                 System.out.println("Deletion Done.");
-                temp = 1;
+                flag = true;
                 break;
             }
         }
-        if (temp == 0) {
+        if (flag == false) {
             System.out.println("Details not found.");
         }
         return addressBook;
     }
 
-    //Sort entries by name.
+    // Sort entries by name.
     void sortByName(LinkedList<Person> addressBook) {
+        System.out.println("person details sort by name!!!");
         Map<String, Person> sortAddressBook = new TreeMap<>();
         for (Person person : addressBook) {
             String fullName = person.getFirstName() + person.getLastName();
@@ -145,4 +142,39 @@ public class AddressBook {
         sortAddressBook.forEach((k, v) -> System.out.println(v.toString()));
     }
 
+    // Sort entries by City
+    void sortByCity(LinkedList<Person> addressBook) {
+        System.out.println("person details sort by city!!!");
+
+        Map<String, Person> sortAddressBook = new TreeMap<>();
+        for (Person person : addressBook) {
+            String city = person.getCity();
+            sortAddressBook.put(city, person);
+        }
+        sortAddressBook.forEach((k, v) -> System.out.println(v.toString()));
+    }
+
+    // Sort entries by state
+    void sortByState(LinkedList<Person> addressBook) {
+        System.out.println("person details sort by state!!!");
+
+        Map<String, Person> sortAddressBook = new TreeMap<>();
+        for (Person person : addressBook) {
+            String state = person.getState();
+            sortAddressBook.put(state, person);
+        }
+        sortAddressBook.forEach((k, v) -> System.out.println(v.toString()));
+    }
+
+    // Sort entries by Zip
+    void sortByZip(LinkedList<Person> addressBook) {
+        System.out.println("person details sort by zip!!!");
+
+        Map<Integer, Person> sortAddressBook = new TreeMap<>();
+        for (Person person : addressBook) {
+            int zip = person.getZip();
+            sortAddressBook.put(zip, person);
+        }
+        sortAddressBook.forEach((k, v) -> System.out.println(v.toString()));
+    }
 }
