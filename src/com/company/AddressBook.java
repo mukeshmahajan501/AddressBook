@@ -1,4 +1,5 @@
 package com.company;
+
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -184,23 +185,26 @@ public class AddressBook {
     void viewByCity(LinkedList<Person> addressBook) {
         System.out.println("person details view by city!!!");
 
-        System.out.println("enter city to view person details: ");
+        System.out.println("enter city to view person details!!");
         String city = input.next();
         boolean flag = false;
         Dictionary<String, Person> v = new Hashtable<>();
         for (Person person : addressBook) {
             if (city.equals(person.getCity())) {
                 v.put(city, person);
-                flag=true;
+                flag = true;
+
+            }
+
+            for (Enumeration<String> i = v.keys(); i.hasMoreElements();) {
+                String keyresult = i.nextElement();
+                System.out.println("----------------------------");
+                System.out.println("Details : " + v.get(keyresult));
             }
 
         }
         if (flag == false) {
             System.out.println("city not present in address book");
-        }
-        for (Enumeration<String> i = v.keys(); i.hasMoreElements();) {
-            String keyresult = i.nextElement();
-            System.out.println("Details : " + v.get(keyresult));
         }
 
     }
@@ -209,7 +213,7 @@ public class AddressBook {
     void viewByState(LinkedList<Person> addressBook) {
         System.out.println("person details view by state!!!");
 
-        System.out.println("enter state to view person details: ");
+        System.out.println("enter state to view person details!!");
         String state = input.next();
         boolean flag = false;
         Dictionary<String, Person> v = new Hashtable<>();
@@ -218,14 +222,16 @@ public class AddressBook {
                 v.put(state, person);
                 flag = true;
             }
+
+            for (Enumeration<String> i = v.keys(); i.hasMoreElements();) {
+                String keyresult = i.nextElement();
+                System.out.println("----------------------------");
+                System.out.println("Details : " + v.get(keyresult));
+            }
         }
 
         if (flag == false) {
             System.out.println("state not present in address book");
-        }
-        for (Enumeration<String> i = v.keys(); i.hasMoreElements();) {
-            String keyresult = i.nextElement();
-            System.out.println("Details : " + v.get(keyresult));
         }
 
     }
