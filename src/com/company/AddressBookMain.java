@@ -14,8 +14,8 @@ public class AddressBookMain {
         while (flag==false) {
             System.out.print("\n1. Add Person." +
                     "\n2. View Address Book." +
-                    "\n3. Edit details." +
-                    "\n4. Delete person." +
+                    "\n3. Edit details."+
+                    "\n4. Delete person."+
                     "\n5. Exit." +
                     "\n Enter your choice: ");
             int choice = input.nextInt();
@@ -36,7 +36,7 @@ public class AddressBookMain {
                     break;
 
                 case 3:
-                    if (list.isEmpty()) {
+                    if (list.isEmpty()){
                         System.out.println("Address Book Empty.");
                     } else {
                         list = addressBook.editPerson(list);
