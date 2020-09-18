@@ -1,3 +1,4 @@
+
 package com.company;
 
 import java.util.LinkedList;
@@ -7,10 +8,11 @@ public class AddressBookMain {
     public static void main(String[] args) {
         LinkedList<Person> list = new LinkedList<>();
         AddressBook addressBook = new AddressBook();
+        Person person;
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to Address Book !");
-        boolean flag = false;
-        while (flag == false) {
+        int temp = 0;
+        while (temp == 0) {
             System.out.print("\n1. Add Person." +
                     "\n2. View Address Book." +
                     "\n3. Edit details." +
@@ -20,7 +22,8 @@ public class AddressBookMain {
             int choice = input.nextInt();
             switch (choice) {
                 case 1:
-                    addressBook = (AddressBook) addressBook.addPerson(addressBook);
+                    person = addressBook.addPerson(list);
+                    list.add(person);
                     break;
 
                 case 2:
@@ -49,7 +52,7 @@ public class AddressBookMain {
                     }
                     break;
                 case 5:
-                    flag = true;
+                    temp = 1;
                     System.out.println("Exit.");
                     break;
 
