@@ -7,22 +7,20 @@ public class AddressBookMain {
     public static void main(String[] args) {
         LinkedList<Person> list = new LinkedList<>();
         AddressBook addressBook = new AddressBook();
-        Person person;
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to Address Book !");
-        boolean flag=false;
-        while (flag==false) {
+        boolean flag = false;
+        while (flag == false) {
             System.out.print("\n1. Add Person." +
                     "\n2. View Address Book." +
-                    "\n3. Edit details."+
-                    "\n4. Delete person."+
+                    "\n3. Edit details." +
+                    "\n4. Delete person." +
                     "\n5. Exit." +
                     "\n Enter your choice: ");
             int choice = input.nextInt();
             switch (choice) {
                 case 1:
-                    person = addressBook.addPerson();
-                    list.add(person);
+                    addressBook = (AddressBook) addressBook.addPerson(addressBook);
                     break;
 
                 case 2:
@@ -36,7 +34,7 @@ public class AddressBookMain {
                     break;
 
                 case 3:
-                    if (list.isEmpty()){
+                    if (list.isEmpty()) {
                         System.out.println("Address Book Empty.");
                     } else {
                         list = addressBook.editPerson(list);
@@ -51,7 +49,7 @@ public class AddressBookMain {
                     }
                     break;
                 case 5:
-                    flag=true;
+                    flag = true;
                     System.out.println("Exit.");
                     break;
 
