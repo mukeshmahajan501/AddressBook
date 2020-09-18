@@ -1,5 +1,7 @@
 package com.company;
-
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
@@ -60,9 +62,9 @@ public class AddressBook {
         String lastName = input.next();
 
         boolean flag = false;
-        for (Person person : addressBook) {
-            System.out.print(person.getFirstName() + " " + person.getLastName());
-            if (firstName.equals(person.getFirstName()) && lastName.equals(person.getLastName())) {
+        for (Person p : addressBook) {
+            System.out.print(p.getFirstName() + " " + p.getLastName());
+            if (firstName.equals(p.getFirstName()) && lastName.equals(p.getLastName())) {
                 System.out.println("\n1. Address" + "\n2. City" + "\n3. State" + "\n4. Zip" + "\n5. Phone Number"
                         + "\n Enter your choice: ");
                 int choice = input.nextInt();
@@ -70,31 +72,31 @@ public class AddressBook {
                     case 1:
                         System.out.print("Enter Updated Address: ");
                         String address = input.next();
-                        person.setAddress(address);
+                        p.setAddress(address);
                         break;
 
                     case 2:
                         System.out.print("Enter Updated City: ");
                         String city = input.next();
-                        person.setCity(city);
+                        p.setCity(city);
                         break;
 
                     case 3:
                         System.out.print("Enter Updated State: ");
                         String state = input.next();
-                        person.setState(state);
+                        p.setState(state);
                         break;
 
                     case 4:
                         System.out.print("Enter Updated Zip: ");
                         int zip = input.nextInt();
-                        person.setZip(zip);
+                        p.setZip(zip);
                         break;
 
                     case 5:
                         System.out.print("Enter Updated Phone Number: ");
                         String phoneNum = input.next();
-                        person.setPhoneNum(phoneNum);
+                        p.setPhoneNum(phoneNum);
                         break;
 
                     default:
@@ -177,4 +179,55 @@ public class AddressBook {
         }
         sortAddressBook.forEach((k, v) -> System.out.println(v.toString()));
     }
+
+    // view person by city
+    void viewByCity(LinkedList<Person> addressBook) {
+        System.out.println("person details view by city!!!");
+
+        System.out.println("enter city to view person details: ");
+        String city = input.next();
+        boolean flag = false;
+        Dictionary<String, Person> v = new Hashtable<>();
+        for (Person person : addressBook) {
+            if (city.equals(person.getCity())) {
+                v.put(city, person);
+                flag=true;
+            }
+
+        }
+        if (flag == false) {
+            System.out.println("city not present in address book");
+        }
+        for (Enumeration<String> i = v.keys(); i.hasMoreElements();) {
+            String keyresult = i.nextElement();
+            System.out.println("Details : " + v.get(keyresult));
+        }
+
+    }
+
+    // view person by state
+    void viewByState(LinkedList<Person> addressBook) {
+        System.out.println("person details view by state!!!");
+
+        System.out.println("enter state to view person details: ");
+        String state = input.next();
+        boolean flag = false;
+        Dictionary<String, Person> v = new Hashtable<>();
+        for (Person person : addressBook) {
+            if (state.equals(person.getState())) {
+                v.put(state, person);
+                flag = true;
+            }
+        }
+
+        if (flag == false) {
+            System.out.println("state not present in address book");
+        }
+        for (Enumeration<String> i = v.keys(); i.hasMoreElements();) {
+            String keyresult = i.nextElement();
+            System.out.println("Details : " + v.get(keyresult));
+        }
+
+    }
+
 }
